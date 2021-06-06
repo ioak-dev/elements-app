@@ -1,0 +1,11 @@
+.home {
+  .auth-token {
+    word-wrap: break-word;
+  }
+}
+
+.inline-row {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: flex-end;
+}

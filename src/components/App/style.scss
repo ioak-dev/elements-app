@@ -1,0 +1,30 @@
+// @media (min-width: 768px) {
+//   ::-webkit-scrollbar {
+//     width: 10px; /* for vertical scrollbars */
+//     height: 10px; /* for horizontal scrollbars */
+//   }
+
+//   ::-webkit-scrollbar-track {
+//     background: var(--color-foreground-5);
+//     border-radius: 10px;
+//   }
+
+//   ::-webkit-scrollbar-thumb {
+//     background: var(--color-1);
+//     border-radius: 10px;
+//   }
+// }
+
+// .App {
+//   width: 100%;
+//   margin: auto;
+// }
+
+.drawer-left,
+.drawer-right {
+  height: 100%;
+}
+
+.tab-playground {
+  margin-top: 20px;
+}
