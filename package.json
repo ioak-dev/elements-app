@@ -9,6 +9,7 @@
     "build:local": "tsc -w",
     "build": "tsc && webpack --env target=production --config webpack.config.js --mode production",
     "deploy": "npm run build&&gh-pages -d build",
+    "deploy-only": "gh-pages -d build",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
