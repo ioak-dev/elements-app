@@ -1,0 +1,13 @@
+.document-create-section {
+  padding: 20px 0;
+}
+.document-create-section__action {
+  display: flex;
+  justify-content: flex-end;
+}
+.document-create-section__form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 10px;
+  align-items: flex-end;
+}

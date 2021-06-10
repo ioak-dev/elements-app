@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, connect, useDispatch } from 'react-redux';
 
 import { receiveMessage, sendMessage } from '../../events/MessageService';
-import packetWhite from '../../images/mockback_white.svg';
-import packetBlack from '../../images/mockback_black.svg';
+import packetWhite from '../../images/elements_white.svg';
+import packetBlack from '../../images/elements_black.svg';
 import './NavPopover.scss';
 import DropLinks from './DropLinks';
 

@@ -1,0 +1,22 @@
+.menu-bar {
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 10px;
+  margin-left: 20px;
+  a {
+    text-decoration: none;
+    color: var(--color-3);
+    background-color: var(--color-container);
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+    &:hover {
+      color: var(--color-1);
+      background-color: var(--color-container-darker);
+    }
+    &.active {
+      color: var(--color-1);
+      background-color: var(--color-container-dark);
+    }
+  }
+}

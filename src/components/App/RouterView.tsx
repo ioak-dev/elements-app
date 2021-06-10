@@ -9,6 +9,10 @@ import OakRouteApp from '../Auth/OakRouteApp';
 import Unauthorized from '../Auth/Unauthorized';
 import ListSite from '../ListSite';
 import BuildSite from '../BuildSite';
+import PreviewSite from '../PreviewSite';
+import ListDocument from '../ListDocument';
+import BuildDocument from '../BuildDocument';
+import PreviewDocument from '../PreviewDocument';
 
 interface Props {
   cookies: any;
@@ -68,6 +72,54 @@ const RouterView = (props: Props) => {
             {...propsLocal}
             {...props}
             component={BuildSite}
+            middleware={['authenticate']}
+          />
+        )}
+      />
+      <Route
+        path="/site/:sitename/preview"
+        exact
+        render={(propsLocal) => (
+          <OakRouteApp
+            {...propsLocal}
+            {...props}
+            component={PreviewSite}
+            middleware={['authenticate']}
+          />
+        )}
+      />
+      <Route
+        path="/document"
+        exact
+        render={(propsLocal) => (
+          <OakRouteApp
+            {...propsLocal}
+            {...props}
+            component={ListDocument}
+            middleware={['authenticate']}
+          />
+        )}
+      />
+      <Route
+        path="/document/:documentname/edit"
+        exact
+        render={(propsLocal) => (
+          <OakRouteApp
+            {...propsLocal}
+            {...props}
+            component={BuildDocument}
+            middleware={['authenticate']}
+          />
+        )}
+      />
+      <Route
+        path="/document/:documentname/preview"
+        exact
+        render={(propsLocal) => (
+          <OakRouteApp
+            {...propsLocal}
+            {...props}
+            component={PreviewDocument}
             middleware={['authenticate']}
           />
         )}

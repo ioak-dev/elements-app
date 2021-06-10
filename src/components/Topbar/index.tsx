@@ -9,6 +9,7 @@ import RightNav from './RightNav';
 import ExpandIcon from './ExpandIcon';
 import Logo from '../Logo';
 import ChangeAsset from './ChangeAsset';
+import Menu from './Menu';
 
 interface Props {
   space: string;
@@ -33,6 +34,7 @@ const Topbar = (props: Props) => {
     <div className="topbar">
       <div className="topbar--left">
         <Logo />
+        <Menu />
       </div>
       <div className="topbar--right">
         <RightNav cookies={props.cookies} />

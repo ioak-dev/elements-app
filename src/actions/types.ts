@@ -15,3 +15,4 @@ export const ADD_ROLE = 'ADD_ROLE';
 export const REFRESH_SPACES = 'REFRESH_SPACES';
 
 export const RELOAD_SITES = 'RELOAD_SITES';
+export const RELOAD_DOCUMENTS = 'RELOAD_DOCUMENTS';

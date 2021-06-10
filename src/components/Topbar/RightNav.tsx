@@ -28,7 +28,7 @@ const RightNav = (props: Props) => {
   ) => {
     dispatch(removeAuth());
     props.cookies.remove(
-      `mockback_${process.env.REACT_APP_ONEAUTH_APPSPACE_ID}`
+      `elements_${process.env.REACT_APP_ONEAUTH_APPSPACE_ID}`
     );
     history.push(`/`);
     sendMessage('notification', true, {

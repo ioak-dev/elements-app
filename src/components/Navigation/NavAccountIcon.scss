@@ -1,15 +1,16 @@
 .nav-account-icon {
-    i {
-      &:hover {
-        color: var(--color-failure);
-      }
-    }
-  
-    .nav-account-icon--username {
-      display: grid;
-      grid-auto-flow: column;
-      column-gap: 10px;
-      align-items: center;
+  i {
+    &:hover {
+      color: var(--color-failure);
     }
   }
-  
+
+  .nav-account-icon--username {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 10px;
+    align-items: center;
+  }
+
+  color: var(--color-1);
+}

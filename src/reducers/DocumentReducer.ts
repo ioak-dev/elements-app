@@ -1,13 +1,13 @@
-import { RELOAD_SITES } from '../actions/types';
+import { RELOAD_DOCUMENTS } from '../actions/types';
 
 const initialState = {
-  sites: [],
+  documents: [],
 };
 
 export default function (state = initialState, action: any) {
   switch (action.type) {
-    case RELOAD_SITES:
-      console.log('RELOAD_STIES reducer');
+    case RELOAD_DOCUMENTS:
+      console.log('RELOAD_DOCUMENTS reducer');
       return {
         ...state,
         ...action.payload,

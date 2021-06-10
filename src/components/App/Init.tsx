@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllSites } from '../../actions/SiteActions';
+import { fetchAllDocuments } from '../../actions/DocumentActions';
 import { receiveMessage, sendMessage } from '../../events/MessageService';
 
 const Init = () => {
   const authorization = useSelector((state: any) => state.authorization);
   const profile = useSelector((state: any) => state.profile);
-  const [
-    previousAuthorizationState,
-    setPreviousAuthorizationState,
-  ] = useState<any>();
+  const [previousAuthorizationState, setPreviousAuthorizationState] =
+    useState<any>();
   const dispatch = useDispatch();
   useEffect(() => {
     if (
@@ -45,6 +44,7 @@ const Init = () => {
   const initialize = () => {
     console.log('Initialization logic here');
     dispatch(fetchAllSites(authorization));
+    dispatch(fetchAllDocuments(authorization));
   };
   return <></>;
 };

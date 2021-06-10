@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { compose as tableCompose } from '@oakui/core-stage/style-composer/OakTableComposer';
 import { compose as linkCompose } from '@oakui/core-stage/style-composer/OakLinkComposer';
 
-import './SiteListing.scss';
+import './DocumentListing.scss';
 import OakButton from '../../oakui/wc/OakButton';
 
 const queryString = require('query-string');
@@ -12,11 +12,11 @@ interface Props {
   history?: any;
 }
 
-const SiteListing = (props: Props) => {
-  const sites = useSelector((state: any) => state.site.sites);
+const DocumentListing = (props: Props) => {
+  const documents = useSelector((state: any) => state.document.documents);
 
-  const goToEditSite = (site: any) => {
-    props.history.push(`/site/${site.name}/edit`);
+  const goToEditDocument = (document: any) => {
+    props.history.push(`/document/${document.name}/edit`);
   };
 
   return (
@@ -36,11 +36,11 @@ const SiteListing = (props: Props) => {
           </tr>
         </thead>
         <tbody>
-          {sites?.map((item: any) => (
+          {documents?.map((item: any) => (
             <tr key={item._id}>
               <td>
                 <a
-                  href={`#/site/${item.name}/preview`}
+                  href={`#/document/${item.name}/preview`}
                   className={linkCompose({
                     underlineStyle: 'hover',
                     textStyle: 'always',
@@ -52,14 +52,14 @@ const SiteListing = (props: Props) => {
               <td>{item.status}</td>
               <td>{item.createdAt}</td>
               <td>
-                <div className="site-item-actions">
+                <div className="document-item-actions">
                   <OakButton
                     size="xsmall"
                     theme="default"
                     variant="appear"
-                    handleClick={() => goToEditSite(item)}
+                    handleClick={() => goToEditDocument(item)}
                   >
-                    Edit site
+                    Edit document
                   </OakButton>
                   <OakButton
                     size="xsmall"
@@ -79,4 +79,4 @@ const SiteListing = (props: Props) => {
   );
 };
 
-export default SiteListing;
+export default DocumentListing;

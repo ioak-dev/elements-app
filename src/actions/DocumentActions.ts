@@ -1,26 +1,26 @@
 /* eslint-disable import/prefer-default-export */
-import { RELOAD_SITES } from './types';
+import { RELOAD_DOCUMENTS } from './types';
 import { httpGet, httpPut } from '../components/Lib/RestTemplate';
 
-const domain = 'site';
+const domain = 'document';
 
-export const fetchAllSites = (authorization: any) => (dispatch: any) => {
-  httpGet('/site', {
+export const fetchAllDocuments = (authorization: any) => (dispatch: any) => {
+  httpGet('/document', {
     headers: {
       Authorization: authorization.token,
     },
   }).then((response: any) => {
     dispatch({
-      type: RELOAD_SITES,
-      payload: { sites: response.data.data },
+      type: RELOAD_DOCUMENTS,
+      payload: { documents: response.data.data },
     });
   });
 };
 
-export const saveSite =
+export const saveDocument =
   (payload: any, authorization: any) => (dispatch: any) => {
     console.log(payload);
-    httpPut('/site/', payload, {
+    httpPut('/document/', payload, {
       headers: {
         Authorization: authorization.token,
       },
@@ -28,7 +28,7 @@ export const saveSite =
       console.log(response);
       // dispatch({
       //   type: RELOAD_SITES,
-      //   payload: { sites: response.data.data },
+      //   payload: { documents: response.data.data },
       // });
     });
   };

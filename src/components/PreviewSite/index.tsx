@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SiteBuilder } from 'elements';
+import { SitebuilderService } from 'elements';
 import { newId } from '../../events/MessageService';
 
 import './style.scss';
@@ -15,7 +15,7 @@ interface Props {
   match: any;
 }
 
-const BuildSite = (props: Props) => {
+const PreviewSite = (props: Props) => {
   const dispatch = useDispatch();
   const authorization = useSelector((state: any) => state.authorization);
   const [site, setSite] = useState<any>(null);
@@ -25,15 +25,16 @@ const BuildSite = (props: Props) => {
   };
 
   const handleSave = () => {
+    console.log('**handle save');
     dispatch(saveSite(site, authorization));
   };
 
   const switchToPreview = () => {
-    props.history.push(`/site/${site.name}/preview`);
+    console.log('**switch to preview');
   };
 
   const goBack = () => {
-    props.history.goBack();
+    console.log('**go back');
   };
 
   useEffect(() => {
@@ -47,38 +48,16 @@ const BuildSite = (props: Props) => {
   return (
     <>
       {site && (
-        <div className="build-site">
-          <SiteBuilder value={site.data} handleChange={handleChange} />
+        <div className="preview-site">
+          <div
+            dangerouslySetInnerHTML={{
+              __html: SitebuilderService.toHtml(site.data) || '',
+            }}
+          />
         </div>
       )}
-      <div className="build-site__footer">
-        <OakButton
-          theme="default"
-          shape="sharp"
-          variant="outline"
-          handleClick={switchToPreview}
-        >
-          Preview
-        </OakButton>
-        <OakButton
-          theme="default"
-          shape="sharp"
-          variant="outline"
-          handleClick={goBack}
-        >
-          Back
-        </OakButton>
-        <OakButton
-          theme="default"
-          shape="sharp"
-          variant="regular"
-          handleClick={handleSave}
-        >
-          Save
-        </OakButton>
-      </div>
     </>
   );
 };
 
-export default BuildSite;
+export default PreviewSite;

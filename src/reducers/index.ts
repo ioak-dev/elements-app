@@ -5,6 +5,7 @@ import UserReducer from './UserReducer';
 import RoleReducer from './RoleReducer';
 import SpaceReducer from './SpaceReducer';
 import SiteReducer from './SiteReducer';
+import DocumentReducer from './DocumentReducer';
 
 export default combineReducers({
   authorization: AuthReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   role: RoleReducer,
   space: SpaceReducer,
   site: SiteReducer,
+  document: DocumentReducer,
 });

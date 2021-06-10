@@ -5,8 +5,8 @@ import { withRouter } from 'react-router';
 import { withCookies } from 'react-cookie';
 import { MenuOpen } from '@material-ui/icons';
 import { getProfile, setProfile } from '../../actions/ProfileActions';
-import packetWhite from '../../images/mockback_white.svg';
-import packetBlack from '../../images/mockback_black.svg';
+import packetWhite from '../../images/elements_white.svg';
+import packetBlack from '../../images/elements_black.svg';
 
 import { Profile } from '../Types/GeneralTypes';
 import { receiveMessage, sendMessage } from '../../events/MessageService';

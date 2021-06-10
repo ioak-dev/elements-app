@@ -13,5 +13,6 @@
   --oak-app-layout-sidebar-bg: #eff1f3;
   --oak-app-layout-sidebar-fg: var(--color-1);
   --oak-app-layout-topbar-bg: #4a6dd1;
+  --oak-app-layout-topbar-bg: var(--color-container);
   --oak-app-layout-topbar-fg: #fff;
 }

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SiteBuilder } from 'elements';
+import { BlockEditor } from 'elements';
 import { newId } from '../../events/MessageService';
 
 import './style.scss';
 import OakButton from '../../oakui/wc/OakButton';
-import { saveSite } from '../../actions/SiteActions';
+import { saveDocument } from '../../actions/DocumentActions';
 
 const queryString = require('query-string');
 
@@ -15,21 +15,21 @@ interface Props {
   match: any;
 }
 
-const BuildSite = (props: Props) => {
+const BuildDocument = (props: Props) => {
   const dispatch = useDispatch();
   const authorization = useSelector((state: any) => state.authorization);
-  const [site, setSite] = useState<any>(null);
-  const sites = useSelector((state: any) => state.site.sites);
+  const [document, setDocument] = useState<any>(null);
+  const documents = useSelector((state: any) => state.document.documents);
   const handleChange = (value: any) => {
-    setSite({ ...site, data: value });
+    setDocument({ ...document, data: value });
   };
 
   const handleSave = () => {
-    dispatch(saveSite(site, authorization));
+    dispatch(saveDocument(document, authorization));
   };
 
   const switchToPreview = () => {
-    props.history.push(`/site/${site.name}/preview`);
+    props.history.push(`/document/${document.name}/preview`);
   };
 
   const goBack = () => {
@@ -37,21 +37,23 @@ const BuildSite = (props: Props) => {
   };
 
   useEffect(() => {
-    if (props.match.params?.sitename) {
-      setSite(
-        sites?.find((item: any) => item.name === props.match.params.sitename)
+    if (props.match.params?.documentname) {
+      setDocument(
+        documents?.find(
+          (item: any) => item.name === props.match.params.documentname
+        )
       );
     }
-  }, [props.match, sites]);
+  }, [props.match, documents]);
 
   return (
     <>
-      {site && (
-        <div className="build-site">
-          <SiteBuilder value={site.data} handleChange={handleChange} />
+      {document && (
+        <div className="build-document">
+          <BlockEditor value={document.data} handleChange={handleChange} />
         </div>
       )}
-      <div className="build-site__footer">
+      <div className="build-document__footer">
         <OakButton
           theme="default"
           shape="sharp"
@@ -81,4 +83,4 @@ const BuildSite = (props: Props) => {
   );
 };
 
-export default BuildSite;
+export default BuildDocument;
