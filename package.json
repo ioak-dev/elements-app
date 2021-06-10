@@ -1,9 +1,9 @@
 {
-  "name": "oakui-docs",
+  "name": "elements",
   "version": "1.0.0",
-  "description": "Documentation of oakui",
+  "description": "Documentation of elements",
   "main": "index.js",
-  "homepage": "https://oakui-docs.ioak.io",
+  "homepage": "https://elements.ioak.io",
   "scripts": {
     "start": "tsc && webpack serve --env target=development --config webpack.config.js --mode development",
     "build:local": "tsc -w",
