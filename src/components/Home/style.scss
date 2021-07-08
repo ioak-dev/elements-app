@@ -1,11 +1,30 @@
 .home {
-  .auth-token {
-    word-wrap: break-word;
-  }
 }
 
-.inline-row {
+.home__section {
+  height: 100vh;
   display: grid;
-  grid-auto-flow: column;
-  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.home__section__content {
+  display: grid;
+  align-items: center;
+  align-content: center;
+  row-gap: 10px;
+  grid-auto-flow: row;
+  max-width: 400px;
+  background-color: #00000054;
+  padding: 20px;
+}
+
+.home__section-1 {
+  background-image: url('../../images/login_bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
 }

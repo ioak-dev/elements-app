@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Rellax from 'rellax';
 import { SitebuilderService } from 'elements';
 import { newId } from '../../events/MessageService';
 
@@ -19,7 +20,25 @@ const PreviewSite = (props: Props) => {
   const dispatch = useDispatch();
   const authorization = useSelector((state: any) => state.authorization);
   const [site, setSite] = useState<any>(null);
+  const [siteHtml, setSiteHtml] = useState<any>(null);
   const sites = useSelector((state: any) => state.site.sites);
+
+  useEffect(() => {
+    if (site?.data) {
+      setSiteHtml(SitebuilderService.toHtml(site.data));
+    }
+  }, [site]);
+
+  useEffect(() => {
+    new Rellax('.elements-site-parallax', {
+      speed: 2,
+      center: true,
+      round: true,
+      vertical: true,
+      horizontal: false,
+    });
+  }, [siteHtml]);
+
   const handleChange = (value: any) => {
     setSite({ ...site, data: value });
   };
@@ -47,11 +66,11 @@ const PreviewSite = (props: Props) => {
 
   return (
     <>
-      {site && (
+      {siteHtml && (
         <div className="preview-site">
           <div
             dangerouslySetInnerHTML={{
-              __html: SitebuilderService.toHtml(site.data) || '',
+              __html: siteHtml,
             }}
           />
         </div>

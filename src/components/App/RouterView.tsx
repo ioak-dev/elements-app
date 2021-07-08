@@ -49,7 +49,7 @@ const RouterView = (props: Props) => {
         path="/home"
         exact
         render={(propsLocal) => (
-          <OakRouteApp {...propsLocal} {...props} component={Landing} />
+          <OakRouteApp {...propsLocal} {...props} component={Home} />
         )}
       />
       <Route
