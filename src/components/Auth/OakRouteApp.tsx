@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addAuth } from '../../actions/AuthActions';
 import { Authorization } from '../Types/GeneralTypes';
 import { sendMessage } from '../../events/MessageService';
-import { httpGet } from '../Lib/RestTemplate';
+import { httpGet, httpPost } from '../Lib/RestTemplate';
 
 interface Props {
   path?: string;
@@ -46,32 +46,42 @@ const OakRoute = (props: Props) => {
   };
 
   const authenticate = async (redirect = true) => {
+    sendMessage('spaceChange', true, props.match.params.space);
     if (authorization.isAuth) {
       return true;
     }
-    const cookieKey = 'elements';
-    const authKey = props.cookies.get(cookieKey);
-    const baseAuthUrl = '/auth';
-    if (authKey) {
-      httpGet(`${baseAuthUrl}/session/${authKey}`, null)
-        .then((sessionResponse: any) => {
-          if (sessionResponse.status === 200) {
-            dispatch(
-              addAuth({
-                isAuth: true,
-                token: sessionResponse.data.data.token,
-                secret: '',
-                firstName: sessionResponse.data.data.firstName,
-                lastName: sessionResponse.data.data.lastName,
-                email: sessionResponse.data.data.email,
-                type: sessionResponse.data.data.type,
-                userId: sessionResponse.data.data.userId,
-              })
-            );
+    const accessToken = props.cookies.get(`elements-access_token`);
+    const refreshToken = props.cookies.get(`elements-refresh_token`);
+    if (accessToken && refreshToken) {
+      httpPost(
+        `/user/${process.env.REACT_APP_ONEAUTH_APPSPACE_ID}/authorize_user`,
+        { accessToken, refreshToken },
+        null
+      )
+        .then((response) => {
+          if (response.status === 200) {
+            let newAccessToken = accessToken;
+            if (response.data.access_token) {
+              newAccessToken = response.data.access_token;
+              props.cookies.set(`elements-access_token`, newAccessToken);
+            }
+            if (response.data?.claims?.user_id) {
+              dispatch(
+                addAuth({
+                  isAuth: true,
+                  ...response.data.claims,
+                  access_token: newAccessToken,
+                })
+              );
+            } else {
+              props.cookies.remove(`elements-access_token`);
+              props.cookies.remove(`elements-refresh_token`);
+            }
           }
         })
         .catch((error: any) => {
-          props.cookies.remove(cookieKey);
+          props.cookies.remove(`elements-access_token`);
+          props.cookies.remove(`elements-refresh_token`);
           if (redirect && error.response.status === 404) {
             sendMessage('notification', true, {
               type: 'failure',
@@ -101,7 +111,7 @@ const OakRoute = (props: Props) => {
   };
 
   const redirectToLogin = () => {
-    window.location.href = `${process.env.REACT_APP_ONEAUTH_URL}/#/appspace/${process.env.REACT_APP_ONEAUTH_APPSPACE_ID}/login?type=signin&appId=${process.env.REACT_APP_ONEAUTH_APP_ID}`;
+    window.location.href = `${process.env.REACT_APP_ONEAUTH_URL}/#/realm/${process.env.REACT_APP_ONEAUTH_APPSPACE_ID}/login/${process.env.REACT_APP_ONEAUTH_APP_ID}`;
     // props.history.push(`/${space}/login/home`);
   };
 

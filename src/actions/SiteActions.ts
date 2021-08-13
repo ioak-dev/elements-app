@@ -7,7 +7,7 @@ const domain = 'site';
 export const fetchAllSites = (authorization: any) => (dispatch: any) => {
   httpGet('/site', {
     headers: {
-      Authorization: authorization.token,
+      Authorization: authorization.access_token,
     },
   }).then((response: any) => {
     dispatch({
@@ -22,7 +22,7 @@ export const saveSite =
     console.log(payload);
     httpPut('/site/', payload, {
       headers: {
-        Authorization: authorization.token,
+        Authorization: authorization.access_token,
       },
     }).then((response: any) => {
       console.log(response);

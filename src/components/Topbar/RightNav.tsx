@@ -27,9 +27,8 @@ const RightNav = (props: Props) => {
     message = 'You have been logged out'
   ) => {
     dispatch(removeAuth());
-    props.cookies.remove(
-      `elements_${process.env.REACT_APP_ONEAUTH_APPSPACE_ID}`
-    );
+    props.cookies.remove(`elements-access_token`);
+    props.cookies.remove(`elements-refresh_token`);
     history.push(`/`);
     sendMessage('notification', true, {
       type,
@@ -39,7 +38,7 @@ const RightNav = (props: Props) => {
   };
 
   const login = (type: string) => {
-    window.location.href = `${process.env.REACT_APP_ONEAUTH_URL}/#/appspace/${process.env.REACT_APP_ONEAUTH_APPSPACE_ID}/login?type=signin&appId=${process.env.REACT_APP_ONEAUTH_APP_ID}`;
+    window.location.href = `${process.env.REACT_APP_ONEAUTH_URL}/#/realm/${process.env.REACT_APP_ONEAUTH_APPSPACE_ID}/login/${process.env.REACT_APP_ONEAUTH_APP_ID}`;
   };
 
   return (

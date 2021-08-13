@@ -7,7 +7,7 @@ const domain = 'document';
 export const fetchAllDocuments = (authorization: any) => (dispatch: any) => {
   httpGet('/document', {
     headers: {
-      Authorization: authorization.token,
+      Authorization: authorization.access_token,
     },
   }).then((response: any) => {
     dispatch({
@@ -22,7 +22,7 @@ export const saveDocument =
     console.log(payload);
     httpPut('/document/', payload, {
       headers: {
-        Authorization: authorization.token,
+        Authorization: authorization.access_token,
       },
     }).then((response: any) => {
       console.log(response);
